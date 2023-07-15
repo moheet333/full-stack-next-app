@@ -59,6 +59,9 @@ export default function login() {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
+      <Link className="py-2" href="/forgotpassword">
+        forgot password?
+      </Link>
       {buttonDisabled ? (
         <p className="mb-4">Please enter your credentials..</p>
       ) : (
