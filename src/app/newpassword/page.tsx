@@ -22,7 +22,7 @@ export default function newpassword() {
       const response = await axios.post("/api/users/newpassword", data);
       console.log("password changed successfully", response.data);
       setVerified(true);
-      router.push("/login");
+      //router.push("/login");
     } catch (error: any) {
       console.log("Forgot password failed", error.message);
       setError(true);
@@ -47,39 +47,49 @@ export default function newpassword() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing..." : "Please enter your new password"}</h1>
-      <label htmlFor="email">password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
-        id="email"
-        type="password"
-        value={data.password}
-        onChange={(e) => setData({ ...data, password: e.target.value })}
-        placeholder="new password"
-      />
-      {!buttonDisabled && (
-        <button
-          onClick={onsubmit}
-          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        >
-          Submit
-        </button>
-      )}
+      <div className="flex flex-col items-center justify-center py-10 px-7 border-b-8 border-t-8 rounded-xl ">
+        <h1 className="text-lg py-2 pb-4 font-bold">
+          {loading ? "Processing..." : "Please enter your new password"}
+        </h1>
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
+          id="password"
+          type="password"
+          value={data.password}
+          onChange={(e) => setData({ ...data, password: e.target.value })}
+          placeholder="Enter new password"
+        />
+        {buttonDisabled ? (
+          <button
+            disabled
+            className="p-2 border border-gray-300 rounded-lg mb-4 text-gray-500"
+          >
+            Submit
+          </button>
+        ) : (
+          <button
+            onClick={onsubmit}
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+          >
+            Submit
+          </button>
+        )}
 
-      {verified && (
-        <div>
-          <h2 className="text-2xl">Password changed successfully</h2>
-          <Link className="text-blue-500 bg-green-500" href="/login">
-            Login
-          </Link>
-        </div>
-      )}
+        {verified && (
+          <div>
+            <p className="text-xl">Password changed successfully</p>
+            <Link className="text-blue-500 bg-green-500" href="/login">
+              Login
+            </Link>
+          </div>
+        )}
 
-      {error && (
-        <div>
-          <h2 className="text-2xl bg-red-500 text-black">Error</h2>
-        </div>
-      )}
+        {error && (
+          <div>
+            <h2 className="text-2xl bg-red-500 text-black">Error</h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

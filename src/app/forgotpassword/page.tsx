@@ -34,28 +34,48 @@ export default function forgotpassword() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>
-        {loading ? "Processing..." : "Please enter your email to get verified."}
-      </h1>
-      <label htmlFor="email">email</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
-        id="email"
-        type="text"
-        value={data.email}
-        onChange={(e) => setData({ email: e.target.value })}
-        placeholder="email"
-      />
-      {!buttonDisabled && (
-        <button
-          onClick={onsubmit}
-          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        >
-          Submit
-        </button>
-      )}
+      <div className="flex flex-col items-center justify-center p-10 border-b-8 border-t-8 rounded-xl">
+        <h1 className="text-lg py-5 font-bold">
+          {loading ? "Processing..." : "Enter the valid email address"}
+        </h1>
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
+          id="email"
+          type="text"
+          value={data.email}
+          onChange={(e) => setData({ email: e.target.value })}
+          placeholder="email"
+        />
 
-      <Link href="/login">Login page</Link>
+        <p className="pb-3 text-sm">
+          go back?{" "}
+          <Link href="/login" className="text-blue-500">
+            login
+          </Link>
+        </p>
+        {buttonDisabled ? (
+          <button
+            disabled
+            className="p-2  border border-gray-300 rounded-lg mb-4 text-gray-500"
+          >
+            Submit
+          </button>
+        ) : (
+          <button
+            onClick={onsubmit}
+            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+          >
+            Submit
+          </button>
+        )}
+      </div>
+      <div className="mt-6 px-4 text-md font-semibold text-gray-900 dark:text-white">
+        <ul className="max-w-md space-y-2 text-gray-500 list-disc list-inside dark:text-gray-400">
+          <li>The above email address will be verified for a valid user</li>
+          <li>After verification you will get a email</li>
+          <li>Click on the link or copy and paste the url</li>
+        </ul>
+      </div>
     </div>
   );
 }

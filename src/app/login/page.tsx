@@ -39,42 +39,53 @@ export default function login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing..." : "Login"}</h1>
-      <hr />
-      <label htmlFor="email">email</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwhite"
-        id="email"
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-      />
-      <label htmlFor="password">password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwhite"
-        id="password"
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="password"
-      />
-      <Link className="py-2" href="/forgotpassword">
-        forgot password?
-      </Link>
-      {buttonDisabled ? (
-        <p className="mb-4">Please enter your credentials..</p>
-      ) : (
-        <button
-          onClick={onLogin}
-          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        >
-          Login
-        </button>
-      )}
-      <p>
-        If you don't have a account, <Link href="/signup">Signup</Link>
-      </p>
+      <div className="flex flex-col items-center justify-center p-10 border-b-8 border-t-8 rounded-xl ">
+        <h1 className="text-3xl py-5 font-bold">
+          {loading ? "Processing..." : "Login"}
+        </h1>
+        <hr />
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwhite"
+          id="email"
+          type="text"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Enter your email address"
+        />
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwhite"
+          id="password"
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="Enter your password"
+        />
+        <Link className="text-sm text-blue-500" href="/forgotpassword">
+          forgot password?
+        </Link>
+
+        <p className="pt-1 pb-2 text-sm">
+          don't have a account?{" "}
+          <Link href="/signup" className="text-blue-500">
+            Signup
+          </Link>
+        </p>
+        {buttonDisabled ? (
+          <button
+            disabled
+            className="p-2 border border-gray-300 rounded-lg m-3 text-gray-500"
+          >
+            Login
+          </button>
+        ) : (
+          <button
+            onClick={onLogin}
+            className="p-2 border border-gray-300 rounded-lg m-3 focus:outline-none focus:border-gray-600"
+          >
+            Login
+          </button>
+        )}
+      </div>
     </div>
   );
 }

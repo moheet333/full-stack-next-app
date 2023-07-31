@@ -43,49 +43,58 @@ export default function signup() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing..." : "Signup"}</h1>
-      <hr />
-      <label htmlFor="username">username</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
-        id="username"
-        type="text"
-        value={user.username}
-        onChange={(e) => setUser({ ...user, username: e.target.value })}
-        placeholder="username"
-      />
-      <label htmlFor="email">email</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
-        id="email"
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-      />
-      <label htmlFor="password">password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-coolGray"
-        id="password"
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="password"
-      />
-      {buttonDisabled ? (
-        <p className="mb-4">Please enter your credentials..</p>
-      ) : (
-        <button
-          onClick={onSignup}
-          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        >
-          Signup
-        </button>
-      )}
+      <div className="flex flex-col items-center justify-center p-10 border-b-8 border-t-8 rounded-xl ">
+        <h1 className="text-3xl py-5 font-bold">
+          {loading ? "Processing..." : "Signup"}
+        </h1>
+        <hr />
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwihte"
+          id="username"
+          type="text"
+          value={user.username}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+          placeholder="Enter your username"
+        />
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwihte"
+          id="email"
+          type="text"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Enter your email address"
+        />
+        <input
+          className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-offwihte"
+          id="password"
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="Enter your password"
+        />
 
-      <p>
-        If you already have a account, <Link href="/login">Login</Link>
-      </p>
+        <p className="text-sm">
+          already have a account,{" "}
+          <Link href="/login" className="text-blue-500">
+            Login
+          </Link>
+        </p>
+        {buttonDisabled ? (
+          <button
+            disabled
+            className="p-2 border border-gray-300 rounded-lg m-4 text-gray-500"
+          >
+            Submit
+          </button>
+        ) : (
+          <button
+            onClick={onSignup}
+            className="p-2 border border-gray-300 rounded-lg m-4 focus:outline-none focus:border-gray-600"
+          >
+            Submit
+          </button>
+        )}
+      </div>
     </div>
   );
 }
